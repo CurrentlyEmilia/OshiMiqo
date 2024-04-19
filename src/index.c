@@ -2,14 +2,12 @@
 #include <string.h> // strcmp(3)
 #include <unistd.h> // getpid(3)
 #include <sys/types.h> // pid_t
-
 #include <signal.h> // signal(3)
-
 #include <stdlib.h> // exit(3)
 
 #include <concord/discord.h>
 
-#include "config.h"
+#include "../headers/config.h"
 
 void on_ready(struct discord *client, const struct discord_ready *event) {
 	struct discord_create_guild_application_command params = {
