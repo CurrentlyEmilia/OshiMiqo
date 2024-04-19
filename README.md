@@ -39,9 +39,7 @@ Congratulations! If the command above quit with no errors, you have (likely) suc
 
 ## Running the program
 
-It's quite simple, actually:
-
-Register the commands (one-time run, run again per command metadata change)
+It's surprisingly simple, actually:
 
 ```
 $ bins/index
