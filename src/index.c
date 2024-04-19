@@ -10,8 +10,31 @@
 
 void on_ready(struct discord *client, const struct discord_ready *event) {
 	printf("%s\n", "Ready event emitted!");
+	rg_register_commands(client, event);
+}
 
-	printf("%s\n", event->application->name);
+void on_interaction_command(struct discord *client, const struct discord_interaction *event)
+{
+	if (strcmp(event->data->name, "ping") == 0) {
+		struct discord_interaction_response params = {
+			.type = DISCORD_INTERACTION_CHANNEL_MESSAGE_WITH_SOURCE,
+			.data = &(struct discord_interaction_callback_data){
+				.content = "pong"
+			}
+		};
+		discord_create_interaction_response(client, event->id, event->token, &params, NULL);
+	}
+}
+
+void on_interaction(struct discord *client, const struct discord_interaction *event)
+{
+	printf("%u\n", event->type);
+
+	switch (event->type) {
+	case DISCORD_INTERACTION_APPLICATION_COMMAND:
+		on_interaction_command(client, event);
+		break;
+	}
 }
 
 void main()

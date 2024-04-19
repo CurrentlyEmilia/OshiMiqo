@@ -44,14 +44,6 @@ It's quite simple, actually:
 Register the commands (one-time run, run again per command metadata change)
 
 ```
-$ bins/register
-```
-
-Next, if the command above didn't quit with any error, you have (likely) successfully registered the commands.
-
-Now, all you have to do is to run the ACTUAL bot:
-
-```
 $ bins/index
 ```
 

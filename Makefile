@@ -1,23 +1,24 @@
 CC=cc
 CFLAGS=-Og -ggdb
-LDFLAGS=-Og -ggdb
+LDFLAGS=
 
-all: registerBinary indexBinary
+all: mixBinary
 	@printf "OK\n";
 
-registerObject:
-	$(CC) -c -o objects/register.o src/register.c $(LDFLAGS)
+mixBinary: mixObject
+	gcc -o bins/entry objects/mix.o $(LDFLAGS) -pthread -ldiscord -lcurl 
 
-registerBinary: registerObject
-	$(CC) -o bins/register objects/register.o $(CFLAGS) -pthread -ldiscord -lcurl
+mixObject: registerObject indexObject
+	ld -r -o objects/mix.o objects/index.o objects/register.o $(LDFLAGS)
+
+registerObject:
+	$(CC) -c -o objects/register.o src/register.c $(CFLAGS)
 
 indexObject:
-	$(CC) -c -o objects/index.o src/index.c $(LDFLAGS)
-
-indexBinary: indexObject
-	$(CC) -o bins/index objects/index.o $(CFLAGS) -pthread -ldiscord -lcurl
+	$(CC) -c -o objects/index.o src/index.c $(CFLAGS)
 
 clean:
-	rm bins/register objects/register.o
-	rm bins/index objects/index.o
+	rm -f objects/mix.o bin/entry
+	rm -f objects/register.o
+	rm -f objects/index.o
 
