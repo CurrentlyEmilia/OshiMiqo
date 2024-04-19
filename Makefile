@@ -8,17 +8,17 @@ all: mixBinary
 mixBinary: mixObject
 	gcc -o bins/entry objects/mix.o $(LDFLAGS) -pthread -ldiscord -lcurl 
 
-mixObject: registerObject indexObject
-	ld -r -o objects/mix.o objects/index.o objects/register.o $(LDFLAGS)
+mixObject: commandRegistrationObject indexObject
+	ld -r -o objects/mix.o objects/index.o objects/commandRegistration.o $(LDFLAGS)
 
-registerObject:
-	$(CC) -c -o objects/register.o src/register.c $(CFLAGS)
+commandRegistrationObject:
+	$(CC) -c -o objects/commandRegistration.o src/commandRegistration.c $(CFLAGS)
 
 indexObject:
 	$(CC) -c -o objects/index.o src/index.c $(CFLAGS)
 
 clean:
 	rm -f objects/mix.o bin/entry
-	rm -f objects/register.o
+	rm -f objects/commandRegistration.o
 	rm -f objects/index.o
 
