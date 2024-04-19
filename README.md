@@ -42,7 +42,7 @@ Congratulations! If the command above quit with no errors, you have (likely) suc
 It's surprisingly simple, actually:
 
 ```
-$ bins/index
+$ bins/entry
 ```
 
 Well, there you have it. You've got the shitty bot running!
