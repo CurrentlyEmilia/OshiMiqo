@@ -1,0 +1,23 @@
+name: C CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: debian-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: install dependencies (apt)
+      run: apt-get install libcurl-dev build-essential -y
+    - name: pull concord
+      run: git clone https://github.com/Cogmasters/concord
+    - name: build concord
+      run: cd concord; make; make install PREFIX=/usr/local; cd ..
+    - name: make
+      run: make
