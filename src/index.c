@@ -28,8 +28,6 @@ void on_interaction_command(struct discord *client, const struct discord_interac
 
 void on_interaction(struct discord *client, const struct discord_interaction *event)
 {
-	printf("%u\n", event->type);
-
 	switch (event->type) {
 	case DISCORD_INTERACTION_APPLICATION_COMMAND:
 		on_interaction_command(client, event);
