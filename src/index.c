@@ -14,7 +14,7 @@ void on_ready(struct discord *client, const struct discord_ready *event) {
 	printf("%s\n", event->application->name);
 }
 
-int main()
+void main()
 {
 	struct discord *client = discord_init(BOT_TOKEN);
 
