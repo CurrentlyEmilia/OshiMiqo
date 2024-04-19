@@ -1,1 +1,1 @@
-static const int HOSTNAME_MAX_LENGTH = 253
+static const int HOSTNAME_MAX_LENGTH = 253;
