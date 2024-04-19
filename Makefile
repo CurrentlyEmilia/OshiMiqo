@@ -33,4 +33,8 @@ clean:
 	rm -f objects/mix.o bin/entry
 	rm -f objects/commandRegistration.o
 	rm -f objects/index.o
+	rm -f objects/commandHandler.o
+	rm -f objects/commandPing.o
+	rm -f objects/eventInteractionCreate.o
+	rm -f objects/main.o
 
