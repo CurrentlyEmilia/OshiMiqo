@@ -1,17 +1,21 @@
+CC=cc
+CFLAGS=-Og -ggdb
+LDFLAGS=-Og -ggdb
+
 all: registerBinary indexBinary
 	@printf "OK\n";
 
-registerBinary: registerObject
-	cc -o bins/register objects/register.o -pthread -ldiscord -lcurl
-
 registerObject:
-	cc -c -o objects/register.o src/register.c
+	$(CC) -c -o objects/register.o src/register.c $(LDFLAGS)
 
-indexBinary: indexObject
-	cc -o bins/index objects/index.o -pthread -ldiscord -lcurl
+registerBinary: registerObject
+	$(CC) -o bins/register objects/register.o $(CFLAGS) -pthread -ldiscord -lcurl
 
 indexObject:
-	cc -c -o objects/index.o src/index.c
+	$(CC) -c -o objects/index.o src/index.c $(LDFLAGS)
+
+indexBinary: indexObject
+	$(CC) -o bins/index objects/index.o $(CFLAGS) -pthread -ldiscord -lcurl
 
 clean:
 	rm bins/register objects/register.o
