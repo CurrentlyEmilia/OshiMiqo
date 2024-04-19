@@ -11,7 +11,8 @@
 
 #include "../headers/config.h"
 
-void on_ready(struct discord *client, const struct discord_ready *event) {
+void on_ready(struct discord *client, const struct discord_ready *event)
+{
 	struct discord_create_guild_application_command params = {
 		.name = "ping",
 		.description = "Ping command!"
@@ -31,7 +32,8 @@ void sigusro_handler(int sig)
 	exit(0);
 }
 
-int main(void) {
+int main()
+{
 	struct discord *client = discord_init(BOT_TOKEN);
 
 	signal(SIGUSR1, sigusro_handler);
