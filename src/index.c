@@ -4,11 +4,6 @@
 
 #include "../headers/config.h"
 
-void on_ready(struct discord *client, const struct discord_ready *event) {
-	printf("%s\n", "Ready event emitted!");
-	rg_register_commands(client, event);
-}
-
 void on_interaction(struct discord *client, const struct discord_interaction *event)
 {
 	switch (event->type) {
@@ -16,6 +11,10 @@ void on_interaction(struct discord *client, const struct discord_interaction *ev
 		on_interaction_command(client, event);
 		break;
 	}
+}
+
+void on_ready(struct discord *client, const struct discord_ready *event) {
+	on_event_ready(client, event);
 }
 
 void main()

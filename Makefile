@@ -1,4 +1,5 @@
 CC=cc
+LD=ld
 CFLAGS=-Og -ggdb
 LDFLAGS=
 
@@ -12,10 +13,11 @@ prod: mixBinary
 mixBinary: mixObject
 	gcc -o bins/entry objects/mix.o $(LDFLAGS) -pthread -ldiscord -lcurl 
 
-mixObject: commandRegistrationObject indexObject eventInteractionCreateObject commandPing
-	ld -r -o objects/commandHandler.o objects/eventInteractionCreate.o objects/commandPing.o $(LDFLAGS)
-	ld -r -o objects/main.o objects/index.o objects/commandRegistration.o $(LDFLAGS)
-	ld -r -o objects/mix.o objects/commandHandler.o objects/main.o $(LDFLAGS)
+mixObject: commandRegistrationObject indexObject eventInteractionCreateObject commandPingObject eventReadyObject
+	ld -r -o objects/mix_events.o objects/eventInteractionCreate.o objects/eventReady.o
+	ld -r -o objects/mix_commands.o objects/commandPing.o
+	ld -r -o objects/mix_misc.o objects/commandRegistration.o objects/index.o
+	ld -r -o objects/mix.o objects/mix_events.o objects/mix_commands.o objects/mix_misc.o
 
 commandRegistrationObject:
 	$(CC) -c -o objects/commandRegistration.o src/commandRegistration.c $(CFLAGS)
@@ -23,18 +25,17 @@ commandRegistrationObject:
 eventInteractionCreateObject:
 	$(CC) -c -o objects/eventInteractionCreate.o src/events/interactionCreate.c $(CFLAGS)
 
-commandPing:
+commandPingObject:
 	$(CC) -c -o objects/commandPing.o src/commands/ping.c
 
 indexObject:
 	$(CC) -c -o objects/index.o src/index.c $(CFLAGS)
 
-clean:
-	rm -f objects/mix.o bin/entry
-	rm -f objects/commandRegistration.o
-	rm -f objects/index.o
-	rm -f objects/commandHandler.o
-	rm -f objects/commandPing.o
-	rm -f objects/eventInteractionCreate.o
-	rm -f objects/main.o
+eventReadyObject:
+	$(CC) -c -o objects/eventReady.o src/events/ready.c
 
+clean:
+	rm -f bins/entry objects/mix.o
+	rm -f objects/mix_events.o objects/eventInteractionCreate.o objects/eventReady.o
+	rm -f objects/mix_commands.o objects/commandPing.o
+	rm -f objects/mix_misc.o objects/commandRegistration.o objects/index.o
