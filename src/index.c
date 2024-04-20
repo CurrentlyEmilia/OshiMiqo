@@ -3,6 +3,8 @@
 #include <concord/discord.h>
 
 #include "../headers/config.h"
+#include "../headers/source/events/ready.h"
+#include "../headers/source/events/interactionCreate.h"
 
 void on_interaction(struct discord *client, const struct discord_interaction *event)
 {

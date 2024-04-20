@@ -1,6 +1,7 @@
 #include <string.h>
 
 #include <concord/discord.h>
+#include "../../headers/source/commands/ping.h"
 
 void on_interaction_command(struct discord *client, const struct discord_interaction *event)
 {
