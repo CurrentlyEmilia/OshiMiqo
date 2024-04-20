@@ -24,7 +24,7 @@ eventInteractionCreateObject:
 	$(CC) -c -o objects/eventInteractionCreate.o src/events/interactionCreate.c $(CFLAGS)
 
 commandPing:
-	$(CC) -c -o objects/commandPing.o src/ping.c
+	$(CC) -c -o objects/commandPing.o src/commands/ping.c
 
 indexObject:
 	$(CC) -c -o objects/index.o src/index.c $(CFLAGS)
