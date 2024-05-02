@@ -1,6 +1,6 @@
 CC=cc
 LD=ld
-CFLAGS=-Og -ggdb
+CFLAGS=-Og -ggdb -Wall -Wextra -Wpedantic -std=c99
 LDFLAGS=
 
 dev: mixBinary
@@ -11,13 +11,13 @@ prod: mixBinary
 	@printf "OK\n";
 
 mixBinary: mixObject
-	gcc -o bins/entry objects/mixes/mix.o $(LDFLAGS) -pthread -ldiscord -lcurl 
+	$(CC) -o bins/entry objects/mixes/mix.o $(LDFLAGS) -pthread -ldiscord -lcurl 
 
 mixObject: commandRegistrationObject indexObject eventInteractionCreateObject commandPingObject eventReadyObject
-	ld -r -o objects/mixes/mix_events.o objects/events/interactionCreate.o objects/events/ready.o
-	ld -r -o objects/mixes/mix_commands.o objects/commands/ping.o
-	ld -r -o objects/mixes/mix_misc.o objects/misc/commandRegistration.o objects/misc/index.o
-	ld -r -o objects/mixes/mix.o objects/mixes/mix_events.o objects/mixes/mix_commands.o objects/mixes/mix_misc.o
+	$(LD) $(LDFLAGS) -r -o objects/mixes/mix_events.o objects/events/interactionCreate.o objects/events/ready.o
+	$(LD) $(LDFLAGS) -r -o objects/mixes/mix_commands.o objects/commands/ping.o
+	$(LD) $(LDFLAGS) -r -o objects/mixes/mix_misc.o objects/misc/commandRegistration.o objects/misc/index.o
+	$(LD) $(LDFLAGS) -r -o objects/mixes/mix.o objects/mixes/mix_events.o objects/mixes/mix_commands.o objects/mixes/mix_misc.o
 
 commandRegistrationObject:
 	$(CC) -c -o objects/misc/commandRegistration.o src/commandRegistration.c $(CFLAGS)
