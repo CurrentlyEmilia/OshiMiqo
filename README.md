@@ -18,9 +18,9 @@ No, I have no plans to use autohell at this time.
 
 ### Build prerequisites
 
-- A C99-compliant compiler (tested with GCC 13.2.1\_p20240210 p14)
+- A C99-compliant compiler (tested with Alpine Clang 17.0.6)
 - Make (tested with GNU Make 4.4.1)
-- A standard C library (tested with glibc Gentoo 2.38-r10 (patchset 10))
+- A standard C library (tested with musl latest)
 - [Concord](https://github.com/Cogmasters/concord) (requires pthreads and curl)
 - POSIX thread support
 - [libcurl](https://curl.se/)
