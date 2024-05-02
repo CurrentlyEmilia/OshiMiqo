@@ -12,7 +12,10 @@ void on_interaction(struct discord *client, const struct discord_interaction *ev
 	case DISCORD_INTERACTION_APPLICATION_COMMAND:
 		on_interaction_command(client, event);
 		break;
-	default:
+	case DISCORD_INTERACTION_PING:
+	case DISCORD_INTERACTION_MODAL_SUBMIT:
+	case DISCORD_INTERACTION_MESSAGE_COMPONENT:
+	case DISCORD_INTERACTION_APPLICATION_COMMAND_AUTOCOMPLETE:
 		printf("%s\n", "Invalid event type received!\n");
 		break;
 	}
