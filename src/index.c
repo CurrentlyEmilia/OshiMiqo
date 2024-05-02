@@ -12,6 +12,9 @@ void on_interaction(struct discord *client, const struct discord_interaction *ev
 	case DISCORD_INTERACTION_APPLICATION_COMMAND:
 		on_interaction_command(client, event);
 		break;
+	default:
+		printf("%s\n", "Invalid event type received!\n");
+		break;
 	}
 }
 
@@ -19,7 +22,7 @@ void on_ready(struct discord *client, const struct discord_ready *event) {
 	on_event_ready(client, event);
 }
 
-void main()
+int main()
 {
 	struct discord *client = discord_init(BOT_TOKEN);
 
@@ -27,5 +30,6 @@ void main()
 	discord_set_on_interaction_create(client, &on_interaction);
 
 	discord_run(client);
+	return 0;
 }
 
