@@ -22,7 +22,7 @@ void on_ready(struct discord *client, const struct discord_ready *event) {
 	on_event_ready(client, event);
 }
 
-int main()
+int main(void)
 {
 	struct discord *client = discord_init(BOT_TOKEN);
 
