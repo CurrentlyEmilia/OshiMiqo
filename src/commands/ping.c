@@ -14,6 +14,8 @@ void on_interaction_command_ping(struct discord *client, const struct discord_in
 	int unameCode;
 	char content[2000];
 
+	memset(content, '\0', 2000);
+
 	unameCode = uname(&unameData);
 
 	if (unameCode != 0 && errno != 0) {
